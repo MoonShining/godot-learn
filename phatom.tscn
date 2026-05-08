@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://dnrd30xmrvchx"]
+
+[ext_resource type="Script" uid="uid://cuo1lske8ovcg" path="res://kakaxi.gd" id="1_4f3ir"]
+[ext_resource type="Texture2D" uid="uid://5jy3jept1eej" path="res://kakaxi.png" id="1_sj0v2"]
+[ext_resource type="Shader" uid="uid://260mgm088x6k" path="res://phatom.gdshader" id="2_2cmel"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r1d0t"]
+shader = ExtResource("2_2cmel")
+shader_parameter/outline_color = Color(0, 0.78431374, 1, 1)
+shader_parameter/outline_width = 2.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f3ir"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cmel"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1d0t"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwy3n"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmvhk"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7y0j5"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uqh6"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h32x3"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dr26"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rql8s"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eugvi"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_541n4"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1emx"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yb83"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvyiw"]
+atlas = ExtResource("1_sj0v2")
+region = Rect2(896, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqetf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f3ir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cmel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1d0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwy3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmvhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7y0j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uqh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h32x3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dr26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rql8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eugvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_541n4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1emx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yb83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvyiw")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 20.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=194442770]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=152388710]
+script = ExtResource("1_4f3ir")
+
+[node name="AnimatableBody2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=235538012]
+material = SubResource("ShaderMaterial_r1d0t")
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_dqetf")
+animation = &"attack"
+autoplay = "attack"
+frame_progress = 0.270021
