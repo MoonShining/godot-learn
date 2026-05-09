@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://cuo1lske8ovcg" path="res://kakaxi.gd" id="1_4f3ir"]
 [ext_resource type="Texture2D" uid="uid://5jy3jept1eej" path="res://kakaxi.png" id="1_sj0v2"]
 [ext_resource type="Shader" uid="uid://260mgm088x6k" path="res://phatom.gdshader" id="2_2cmel"]
+[ext_resource type="Script" uid="uid://b3kqwfyvho24r" path="res://base_chac.gd" id="4_8uqh6"]
+[ext_resource type="Shader" uid="uid://bu64cy12cdr6" path="res://pixelboom.gdshader" id="4_lwy3n"]
+[ext_resource type="Texture2D" uid="uid://c0syu00j6nxsi" path="res://sprite-Sheet.png" id="5_dmvhk"]
+[ext_resource type="Script" uid="uid://bhd3n0l46gwa1" path="res://boom_anim.gd" id="6_dmvhk"]
+[ext_resource type="Texture2D" uid="uid://buvx54bnphyno" path="res://knife.png" id="7_7y0j5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r1d0t"]
 shader = ExtResource("2_2cmel")
@@ -125,6 +130,87 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmvhk"]
+shader = ExtResource("4_lwy3n")
+shader_parameter/progress = 0.0
+shader_parameter/pixel_size = 4.0
+shader_parameter/explosion_force = 1.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqetf"]
+atlas = ExtResource("5_dmvhk")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqdbo"]
+atlas = ExtResource("5_dmvhk")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsn2s"]
+atlas = ExtResource("5_dmvhk")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nb27"]
+atlas = ExtResource("5_dmvhk")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu0wm"]
+atlas = ExtResource("5_dmvhk")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwcqc"]
+atlas = ExtResource("5_dmvhk")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bn6r"]
+atlas = ExtResource("5_dmvhk")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kamna"]
+atlas = ExtResource("5_dmvhk")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4h61x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqetf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqdbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsn2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nb27")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu0wm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwcqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bn6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kamna")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7y0j5"]
+shader = ExtResource("4_lwy3n")
+shader_parameter/progress = 0.0
+shader_parameter/pixel_size = 1.0
+shader_parameter/explosion_force = 1.1
+
 [node name="Node2D" type="Node2D" unique_id=194442770]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=152388710]
@@ -132,8 +218,27 @@ script = ExtResource("1_4f3ir")
 
 [node name="AnimatableBody2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=235538012]
 material = SubResource("ShaderMaterial_r1d0t")
-scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_dqetf")
 animation = &"attack"
 autoplay = "attack"
 frame_progress = 0.270021
+
+[node name="BaseChac" type="CharacterBody2D" parent="." unique_id=134732180]
+position = Vector2(161, 97)
+script = ExtResource("4_8uqh6")
+
+[node name="Body" type="AnimatedSprite2D" parent="BaseChac" unique_id=203242686]
+material = SubResource("ShaderMaterial_dmvhk")
+sprite_frames = SubResource("SpriteFrames_4h61x")
+animation = &"idle"
+frame_progress = 0.016310347
+offset = Vector2(3, -3)
+script = ExtResource("6_dmvhk")
+
+[node name="Weapon" type="Sprite2D" parent="BaseChac/Body" unique_id=1669538549]
+material = SubResource("ShaderMaterial_7y0j5")
+position = Vector2(1, 0)
+rotation = -0.55850536
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("7_7y0j5")
+offset = Vector2(8, 1)
