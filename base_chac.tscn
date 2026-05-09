@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://b2ox18h3yskoa"]
+
+[ext_resource type="Script" uid="uid://b3kqwfyvho24r" path="res://base_chac.gd" id="1_h71sb"]
+[ext_resource type="Shader" uid="uid://bu64cy12cdr6" path="res://pixelboom.gdshader" id="2_o60fm"]
+[ext_resource type="Texture2D" uid="uid://c0syu00j6nxsi" path="res://sprite-Sheet.png" id="3_0ofro"]
+[ext_resource type="Texture2D" uid="uid://buvx54bnphyno" path="res://knife.png" id="4_6e6m8"]
+[ext_resource type="Script" uid="uid://0vs233pp0vla" path="res://weapon.gd" id="5_o60fm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmvhk"]
+shader = ExtResource("2_o60fm")
+shader_parameter/progress = 0.0
+shader_parameter/pixel_size = 4.0
+shader_parameter/explosion_force = 1.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqetf"]
+atlas = ExtResource("3_0ofro")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqdbo"]
+atlas = ExtResource("3_0ofro")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsn2s"]
+atlas = ExtResource("3_0ofro")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nb27"]
+atlas = ExtResource("3_0ofro")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu0wm"]
+atlas = ExtResource("3_0ofro")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwcqc"]
+atlas = ExtResource("3_0ofro")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bn6r"]
+atlas = ExtResource("3_0ofro")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kamna"]
+atlas = ExtResource("3_0ofro")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4h61x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqetf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqdbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsn2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nb27")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu0wm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwcqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bn6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kamna")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7y0j5"]
+shader = ExtResource("2_o60fm")
+shader_parameter/progress = 0.0
+shader_parameter/pixel_size = 1.0
+shader_parameter/explosion_force = 1.1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o60fm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6e6m8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="BaseChac" type="CharacterBody2D" unique_id=298872095]
+script = ExtResource("1_h71sb")
+
+[node name="Body" type="AnimatedSprite2D" parent="." unique_id=1833756869]
+material = SubResource("ShaderMaterial_dmvhk")
+sprite_frames = SubResource("SpriteFrames_4h61x")
+animation = &"move"
+frame_progress = 0.39918417
+offset = Vector2(3, -3)
+
+[node name="Weapon" type="AnimatedSprite2D" parent="Body" unique_id=2046927920]
+material = SubResource("ShaderMaterial_7y0j5")
+position = Vector2(1, 0)
+rotation = -0.55850536
+scale = Vector2(0.99999994, 0.99999994)
+sprite_frames = SubResource("SpriteFrames_o60fm")
+offset = Vector2(8, 1)
+script = ExtResource("5_o60fm")
